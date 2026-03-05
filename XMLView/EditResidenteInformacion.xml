@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <group name="data" numcolumns="12">
+            <column name="ca-apellidos" display="left" order="100">
+                <widget type="text" fieldname="ca_apellidos" maxlength="180"/>
+            </column>
+            <column name="ca-email" display="left" order="110">
+                <widget type="text" fieldname="ca_email" maxlength="100"/>
+            </column>
+            <column name="ca-nombres" display="left" order="120">
+                <widget type="text" fieldname="ca_nombres" maxlength="180"/>
+            </column>
+            <column name="ca-parentesco" display="left" order="130">
+                <widget type="text" fieldname="ca_parentesco" maxlength="10"/>
+            </column>
+            <column name="codcliente" display="left" order="140">
+                <widget type="autocomplete" fieldname="codcliente" required="true">
+                    <values source="clientes" fieldcode="codcliente" fieldtitle="nombre"/>
+                </widget>
+            </column>
+            <column name="codigo" display="left" order="150">
+                <widget type="text" fieldname="codigo" maxlength="32"/>
+            </column>
+            <column name="id" display="" order="160">
+                <widget type="text" fieldname="id" readonly="true"/>
+            </column>
+            <column name="ocupacion" display="left" order="170">
+                <widget type="text" fieldname="ocupacion" maxlength="10"/>
+            </column>
+            <column name="ocupantes" display="left" order="180">
+                <widget type="number" fieldname="ocupantes"/>
+            </column>
+            <column name="ocupantes12anos" display="left" order="190">
+                <widget type="number" fieldname="ocupantes12anos"/>
+            </column>
+            <column name="ocupantes18anos" display="left" order="200">
+                <widget type="number" fieldname="ocupantes18anos"/>
+            </column>
+            <column name="ocupantes30anos" display="left" order="210">
+                <widget type="number" fieldname="ocupantes30anos"/>
+            </column>
+            <column name="ocupantes50anos" display="left" order="220">
+                <widget type="number" fieldname="ocupantes50anos"/>
+            </column>
+            <column name="ocupantes5anos" display="left" order="230">
+                <widget type="number" fieldname="ocupantes5anos"/>
+            </column>
+            <column name="ocupantes70anos" display="left" order="240">
+                <widget type="number" fieldname="ocupantes70anos"/>
+            </column>
+            <column name="ocupantes71anos" display="left" order="250">
+                <widget type="number" fieldname="ocupantes71anos"/>
+            </column>
+            <column name="profesion" display="left" order="260">
+                <widget type="text" fieldname="profesion" maxlength="180"/>
+            </column>
+            <column name="propietario" display="center" order="270">
+                <widget type="checkbox" fieldname="propietario" required="true"/>
+            </column>
+            <column name="vehiculos" display="left" order="280">
+                <widget type="number" fieldname="vehiculos"/>
+            </column>
+        </group>
+    </columns>
+</view>

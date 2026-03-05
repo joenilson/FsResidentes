@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : residentes_ayudas.xml
+    Description:
+        Estructura de la tabla residentes_ayudas.
+-->
+<table>
+    <column>
+        <name>codigo</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>descripcion</name>
+        <type>character varying(100)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>tipo</name>
+        <type>character varying(16)</type>
+        <null>NO</null>
+    </column>
+    <constraint>
+        <name>residentes_ayudas_pk</name>
+        <type>PRIMARY KEY (codigo,tipo)</type>
+    </constraint>
+</table>

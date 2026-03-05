@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : residentes_vehiculos.xml
+    Description:
+        Estructura de la tabla residentes_vehiculos.
+-->
+<table>
+    <column>
+        <name>codcliente</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codigo_tarjeta</name>
+        <type>character varying(32)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>idvehiculo</name>
+        <type>serial</type>
+        <null>NO</null>
+        <default>nextval('residentes_vehiculos_idvehiculo_seq'::regclass)</default>
+    </column>
+    <column>
+        <name>vehiculo_color</name>
+        <type>character varying(32)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>vehiculo_marca</name>
+        <type>character varying(32)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>vehiculo_modelo</name>
+        <type>character varying(32)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>vehiculo_placa</name>
+        <type>character varying(16)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>vehiculo_tipo</name>
+        <type>character varying(32)</type>
+        <null>YES</null>
+    </column>
+    <constraint>
+        <name>residentes_vehiculos_codcliente_fkey</name>
+        <type>FOREIGN KEY (codcliente) REFERENCES clientes (codcliente)</type>
+    </constraint>
+    <constraint>
+        <name>residentes_vehiculos_pk</name>
+        <type>PRIMARY KEY (idvehiculo,codcliente)</type>
+    </constraint>
+    <constraint>
+        <name>residentes_vehiculos_clientes</name>
+        <type>FOREIGN KEY (codcliente) REFERENCES clientes (codcliente) MATCH SIMPLE
+      ON UPDATE CASCADE ON DELETE CASCADE</type>
+    </constraint>
+</table>

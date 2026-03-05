@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <group name="data" numcolumns="12">
+        </group>
+    </columns>
+</view>

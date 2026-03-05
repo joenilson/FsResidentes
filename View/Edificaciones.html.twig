@@ -1,0 +1,190 @@
+{#
+FacturaScripts utiliza el motor de plantillas twig.
+Los archivos de las vistas HTML deben tener la extensión .html.twig
+y se deben almacenar en la carpeta View de su plugin.
+
+https://facturascripts.com/publicaciones/las-vistas-html-69
+
+https://twig.symfony.com/
+
+#}
+
+{% extends "Master/MenuTemplate.html.twig" %}
+{% block bodyHeaderOptions %}
+    {{ parent() }}
+    {% set pageData = fsc.getPageData() %}
+    {% set firstView = fsc.views | first %}
+    <div class="container-fluid mb-3 d-print-none">
+        <div class="row">
+            <div class="col-md-7">
+                {# -- Page data for small devices -- #}
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb d-md-none">
+                        <li class="breadcrumb-item">
+                            <a href="#">{{ trans(pageData.menu) }}</a>
+                        </li>
+                        {% if pageData.submenu %}
+                            <li class="breadcrumb-item">
+                                <a href="#">{{ trans(pageData.submenu) }}</a>
+                            </li>
+                        {% endif %}
+                        <li class="breadcrumb-item active" aria-current="page">{{ fsc.title }}</li>
+                    </ol>
+                </nav>
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-secondary" href="{{ fsc.url() }}"
+                       title="{{ trans('refresh') }}">
+                        <i class="fa-solid fa-redo" aria-hidden="true"></i>
+                    </a>
+                    {% if pageData.name == fsc.user.homepage %}
+                        <a class="btn btn-sm btn-secondary active" href="{{ fsc.url() }}?defaultPage=FALSE"
+                           title="{{ trans('marked-as-homepage') }}">
+                            <i class="fa-solid fa-bookmark" aria-hidden="true"></i>
+                        </a>
+                    {% else %}
+                        <a class="btn btn-sm btn-secondary" href="{{ fsc.url() }}?defaultPage=TRUE"
+                           title="{{ trans('mark-as-homepage') }}">
+                            <i class="fa-regular fa-bookmark" aria-hidden="true"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                {# -- Options button -- #}
+                {% if firstView.settings.btnOptions %}
+                    <div class="btn-group">
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa-solid fa-wrench fa-fw me-1" aria-hidden="true"></i> {{ trans('options') }}
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-5 text-end">
+                <h1 class="h4 mb-0 d-none d-md-inline-block">
+                    {{ fsc.title }}<i class="{{ pageData.icon }} ms-3" aria-hidden="true"></i>
+                </h1>
+            </div>
+        </div>
+    </div>
+    {# -- Tabs -- #}
+    <div class="nav-tabs-wrapper d-print-none">
+        <ul class="nav nav-tabs nav-tabs-scroll" id="mainTabs" role="tablist">
+            {% for viewName, view in fsc.views %}
+                <li class="nav-item">
+                    {% set active = (viewName == fsc.active) ? ' active' : '' %}
+                    <a href="#{{ viewName }}" class="nav-link{{ active }}" data-bs-toggle="tab" role="tab"
+                       aria-controls="{{ viewName }}" title="{{ view.title }}">
+                        <i class="{{ view.icon }} fa-fw me-1 d-none d-sm-inline" aria-hidden="true"></i>
+                        {% if view.title | length > 15 %}
+                            <span>{{ view.title | slice(0, 15) }}...</span>
+                        {% else %}
+                            <span>{{ view.title }}</span>
+                        {% endif %}
+                        {% if view.count > 0 %}
+                            <span class="badge bg-secondary">{{ number(view.count, 0) }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="container-fluid">
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="btn-group">
+                    <a class="btn btn-primary" href="#">
+                        <i class="fa-solid fa-gear me-1"></i>
+                        {{ trans('configuration') | default('Configuración') }}
+                    </a>
+                    <button class="btn btn-secondary" type="button" data-bs-toggle="modal"
+                            data-bs-target="#modalMapaEdificaciones">
+                        <i class="fa-solid fa-building me-1"></i>
+                        {{ trans('map-buildings') | default('Mapa de Edificaciones') }}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 mb-3">
+                <ul class="list-group shadow-sm">
+                    {% if fsc.mapaEdificaciones is not empty %}
+                        <li class="list-group-item bg-primary text-white fw-bold">
+                            <i class="fa-solid fa-city me-2"></i> Edificaciones
+                        </li>
+
+                        {% for punto in fsc.mapaEdificaciones %}
+                            {% set active = (punto.id == fsc.idEdificacion) ? ' active' : '' %}
+                            <a class="list-group-item list-group-item-action item-edificacion{{ active }}"
+                               href="{{ fsc.url() }}?id={{ punto.id }}">
+                                {{ punto.codigo_edificacion }}
+                                <i class="fa-solid fa-chevron-right float-end text-muted mt-1" style="font-size: 0.8rem;"></i>
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <li class="list-group-item text-muted">No hay edificaciones disponibles.</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="col-sm-10 mb-3">
+                <div id="edificaciones-detalle">
+                    {% if fsc.idEdificacion %}
+                        {% include 'Twig/Templates/EdificacionesWidget.html.twig' %}
+                    {% else %}
+                        <div class="card shadow-sm">
+                            <div class="card-body text-muted">
+                                <p class="text-justify">Aqui se mostrará el listado de <b>edificaciones.</b></p>
+                                <p class="text-justify">Para iniciar la configuración primero se debe crear la estructura en el boton de
+                                    <b><i class="fa fa-gear"></i>Configuración</b>, debe crear desde el grupo mayor
+                                    hasta la edificación minima por ejemplo Manzana > Bloque > Edificio y si son casas lo que se controlará entonces Manzana > Bloque > Casa.</p>
+                                <p class="text-justify">Puede tener varios tipos de configuraciones, pero siempre partiendo de un solo inicio, eso significa que puede tener
+                                    Manzana > Edificio, Manzana > Casa y Manzana > Bloque > Edificio.</p>
+                                <p class="text-justify">Luego de crear los tipos de edificaciones debe ir al <b><i class="fa fa-building"></i>&nbsp;Mapa de Edificaciones</b> y crear
+                                    todo la estructura con los numeros o letras de cada Grupo, Manzana, Ramal, o como haya denominado su estructura.</p>
+                                <p class="text-justify">
+                                    En el <b><i class="fa fa-building"></i>&nbsp;Mapa de Edificaciones</b> puede crear en masa por cada tipo de edificacion rangos de Manzanas, Grupos, Bloques, Edificios, etc.
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalMapaEdificaciones" tabindex="-1" aria-labelledby="modalMapaEdificacionesLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalMapaEdificacionesLabel">
+                        {{ trans('map-buildings') | default('Mapa de Edificaciones') }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    {% include 'MapaEdificaciones.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block css %}
+    {{ parent() }}
+
+    {# tu código aquí #}
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}

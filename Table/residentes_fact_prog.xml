@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : residentes_fact_prog.xml
+    Description:
+        Estructura de la tabla residentes_fact_prog.xml
+-->
+<table>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+        <default>nextval('residentes_factprog_id_seq'::regclass)</default>
+    </column>
+    <column>
+        <name>descripcion</name>
+        <type>character varying(120)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>tipo_programacion</name>
+        <type>character varying(12)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>forma_pago</name>
+        <type>character varying(6)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>formato_factura</name>
+        <type>character varying(48)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>fecha_envio</name>
+        <type>date</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>fecha_vencimiento</name>
+        <type>date</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>hora_envio</name>
+        <type>character varying(6)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>residentes_facturar</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>facturas_generadas</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>usuario_creacion</name>
+        <type>character varying(50)</type>
+        <null>NO</null>
+    </column>  
+    <column>
+        <name>usuario_modificacion</name>
+        <type>character varying(50)</type>
+        <null>YES</null>
+    </column>  
+    <column>
+        <name>estado</name>
+        <type>character varying(16)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>fecha_creacion</name>
+        <type>timestamp without time zone</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>fecha_modificacion</name>
+        <type>timestamp without time zone</type>
+        <null>YES</null>
+    </column>
+    <constraint>
+        <name>residentes_factprog_pkey</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+</table>

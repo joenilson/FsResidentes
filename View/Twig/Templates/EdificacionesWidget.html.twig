@@ -1,0 +1,59 @@
+{#
+Widget reutilizable para mostrar contenido en panel derecho.
+#}
+<div class="card shadow-sm">
+    <div class="card-header">
+        <i class="fa-solid fa-building me-1" aria-hidden="true"></i>
+        {{ trans('buildings-widget') | default('Widget de Edificaciones') }}
+    </div>
+    <div class="card-body">
+        <div class="row g-3">
+            {% for inmueble in fsc.inmuebles %}
+                <div class="col-12 col-md-6 col-xl-4">
+                    <div class="card shadow-sm border-0 rounded-3 h-100 building-card">
+                        <div class="card-header bg-white border-bottom-0 pt-3 pb-0 d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5 class="card-title fw-bold text-primary mb-1">
+                                    <i class="fa-solid fa-building me-2"></i> Edificio: {{ inmueble.codigo_padre }} - {{ inmueble.codigo_edificacion }}
+                                </h5>
+{#                                <small class="text-muted">ID: {{ inmueble.id }}</small>#}
+                            </div>
+                            <button class="btn btn-sm btn-outline-secondary btn-refresh-inmuebles" title="Recargar"
+                                    type="button"
+                                    data-id-edificio="{{ inmueble.id }}">
+                                <i class="fa-solid fa-refresh"></i>
+                            </button>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-light text-start d-flex justify-content-between align-items-center btn-toggle-inmuebles"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#collapseInmuebles-{{ inmueble.id }}"
+                                        aria-expanded="false"
+                                        data-id-edificio="{{ inmueble.id }}"
+                                        data-loaded="false">
+                                    <span>
+                                        <i class="fa-solid fa-door-open me-2 text-secondary"></i>
+                                        <span class="fw-bold">{{ inmueble.total_inmuebles }}</span> Inmuebles
+                                    </span>
+                                    <i class="fa-solid fa-chevron-down transition-icon"></i>
+                                </button>
+                            </div>
+
+                            <div class="collapse mt-3" id="collapseInmuebles-{{ inmueble.id }}">
+                                <div class="card card-body bg-light border-0 p-2 container-inmuebles-{{ inmueble.id }}">
+                                    <div class="text-center py-3 text-muted">
+                                        <i class="fa-solid fa-circle-notch fa-spin fa-2x"></i>
+                                        <p class="small mt-2">Cargando inmuebles...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

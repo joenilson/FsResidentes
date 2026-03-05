@@ -1,1 +1,11 @@
-{"fsresidentes": "FsResidentes"}
+{
+  "fsresidentes": "FsResidentes",
+  "edit-building": "Editar Edificación",
+  "edit-resident": "Editar Residente",
+  "edit-vehicle": "Editar Vehículo",
+  "list-buildings": "Edificaciones",
+  "list-residents": "Residentes",
+  "list-vehicles": "Vehículos",
+  "map-buildings": "Mapa de Edificaciones",
+  "buildings-widget": "Edificaciones"
+}

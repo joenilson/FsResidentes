@@ -1,0 +1,13 @@
+{#
+Vista de mapa de edificaciones.
+#}
+
+<div class="card">
+    <div class="card-body">
+        <div class="h5 mb-2">
+            <i class="fa-solid fa-map-location-dot me-1" aria-hidden="true"></i>
+            {{ trans('map-buildings') | default('Mapa de Edificaciones') }}
+        </div>
+        <p class="mb-0">{{ trans('map-buildings-placeholder') | default('Aquí se mostrará el mapa de edificaciones.') }}</p>
+    </div>
+</div>

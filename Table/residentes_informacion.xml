@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : residentes_informacion.xml
+    Description:
+        Estructura de la tabla residentes_informacion.
+-->
+<table>
+    <column>
+        <name>ca_apellidos</name>
+        <type>character varying(180)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ca_email</name>
+        <type>character varying(100)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ca_nombres</name>
+        <type>character varying(180)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ca_parentesco</name>
+        <type>character varying(10)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ca_parentesco_obs</name>
+        <type>character varying(180)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ca_propietario</name>
+        <type>boolean</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ca_telefono</name>
+        <type>character varying(32)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>codcliente</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codigo</name>
+        <type>character varying(32)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>informacion_discapacidad</name>
+        <type>text</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupacion</name>
+        <type>character varying(10)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes5anos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes12anos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes18anos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes30anos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes50anos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes70anos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>ocupantes71anos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>profesion</name>
+        <type>character varying(180)</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>propietario</name>
+        <type>boolean</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>vehiculos</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <constraint>
+        <name>residentes_informacion_codcliente_fkey</name>
+        <type>FOREIGN KEY (codcliente) REFERENCES clientes (codcliente)</type>
+    </constraint>
+    <constraint>
+        <name>residentes_informacion_ik</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+    <constraint>
+        <name>residentes_informacion_clientes</name>
+        <type>FOREIGN KEY (codcliente) REFERENCES clientes (codcliente) ON UPDATE CASCADE ON DELETE CASCADE</type>
+    </constraint>
+</table>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<view>
+    <columns>
+        <column name='code' order='100'>
+            <widget type='text' fieldname='id' />
+        </column>
+        <column name='phone' order='110' title='Teléfono' display='right'>
+            <widget type='text' fieldname='codcliente'>
+                <values source='Cliente' fieldcode='codcliente' fieldtitle='telefono1'/>
+            </widget>
+        </column>
+        <column name='additional-contact' order='120' title='C. Adicional'>
+            <widget type='text' fieldname='ubicacion'/>
+        </column>
+        <column name='apartment' order='130' title='Dpto.' display='center'>
+            <widget type='text' fieldname='numero'/>
+        </column>
+        <column name='owner' order='140' title='Propietario' display='center'>
+            <widget type='checkbox' fieldname='ocupado'/>
+        </column>
+        <column name='vehicles' order='150' title='Vehículos' display='center'>
+            <widget type='text' fieldname='codcliente'>
+                <values source='Vehiculo' fieldcode='codcliente' fieldtitle='codcliente'/>
+            </widget>
+        </column>
+
+        <column name='occupation-date' order='160' title='Fecha Ocupación' display='center'>
+            <widget type='date' fieldname='fecha_ocupacion'/>
+        </column>
+
+        <column name='debts' order='170' title='Deudas' display='right'>
+            <widget type='text' fieldname='codcliente'>
+                <values source='Cliente' fieldcode='codcliente' fieldtitle='riesgoalcanzado'/>
+            </widget>
+        </column>
+    </columns>
+</view>

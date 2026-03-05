@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : residentes.xml
+    Description:
+        Estructura de la tabla residentes.
+-->
+<table>
+   <column>
+      <name>id</name>
+      <type>serial</type>
+      <null>NO</null>
+      <default>nextval('residentes_id_seq'::regclass)</default>
+   </column>
+   <column>
+      <name>codcliente</name>
+      <type>character varying(10)</type>
+      <null>NO</null>
+   </column>
+   <column>
+      <name>fechaalta</name>
+      <type>date</type>
+      <null>YES</null>
+   </column>
+   <column>
+      <name>fechaagua</name>
+      <type>date</type>
+      <null>YES</null>
+   </column>
+   <column>
+      <name>fechagas</name>
+      <type>date</type>
+      <null>YES</null>
+   </column>
+   <column>
+      <name>nombre</name>
+      <type>character varying(140)</type>
+      <null>NO</null>
+   </column>
+   <column>
+      <name>piso</name>
+      <type>character varying(140)</type>
+      <null>NO</null>
+   </column>
+   <column>
+      <name>bloque</name>
+      <type>character varying(140)</type>
+      <null>NO</null>
+   </column>
+   <column>
+      <name>mensualidad</name>
+      <type>double precision</type>
+      <null>NO</null>
+      <default>0</default>
+   </column>
+   <column>
+      <name>agua</name>
+      <type>double precision</type>
+      <null>NO</null>
+      <default>0</default>
+   </column>
+   <column>
+      <name>gas</name>
+      <type>double precision</type>
+      <null>NO</null>
+      <default>0</default>
+   </column>
+   <column>
+      <name>observaciones</name>
+      <type>text</type>
+      <null>YES</null>
+   </column>
+   <column>
+      <name>deudas</name>
+      <type>double precision</type>
+      <null>NO</null>
+      <default>0</default>
+   </column>
+   <constraint>
+      <name>residentes_pkey</name>
+      <type>PRIMARY KEY (id)</type>
+   </constraint>
+</table>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : residentes_mapa_edificaciones.xml
+    Description:
+        Estructura de la tabla residentes_mapa_edificaciones.
+-->
+<table>
+    <column>
+        <name>codigo_edificacion</name>
+        <type>character varying(6)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codigo_padre</name>
+        <type>character varying(6)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+        <default>nextval('residentes_mapa_edificaciones_id_seq'::regclass)</default>
+    </column>
+    <column>
+        <name>id_tipo</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>numero</name>
+        <type>character varying(16)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>padre_id</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>padre_tipo</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <constraint>
+        <name>residentes_mapa_edificaciones_pk</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+</table>

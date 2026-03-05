@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : residentes_fact_progr_edificaciones.xml
+    Description:
+        Estructura de la tabla residentes_fact_prog_edificaciones.
+-->
+<table>
+    <column>
+        <name>id</name>
+        <type>serial</type>
+        <null>NO</null>
+        <default>nextval('residentes_factprogedif_id_seq'::regclass)</default>
+    </column>
+    <column>
+        <name>idprogramacion</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>id_edificacion</name>
+        <type>integer</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>codcliente</name>
+        <type>character varying(10)</type>
+        <null>NO</null>
+    </column>
+    <column>
+        <name>idfactura</name>
+        <type>integer</type>
+        <null>YES</null>
+    </column>
+    <column>
+        <name>procesado</name>
+        <type>boolean</type>
+        <null>NO</null>
+        <default>false</default>
+    </column>
+    <constraint>
+        <name>residentes_factprogedif_pkey</name>
+        <type>PRIMARY KEY (id)</type>
+    </constraint>
+    <constraint>
+        <name>residentes_factprogedif_factprog</name>
+        <type>FOREIGN KEY (idprogramacion) REFERENCES residentes_fact_prog (id) ON UPDATE CASCADE ON DELETE CASCADE</type>
+    </constraint>
+</table>
